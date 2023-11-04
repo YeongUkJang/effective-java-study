@@ -10,14 +10,14 @@ public class Flight {
   private boolean economyClass;
   private Seat seat;
 
-  public static flight getFirstClass(Seat seat) {
+  public static Flight getFirstClass(Seat seat) {
     Flight flight = new Flight();
     flight.firstClass = true;
     flight.seat = seat;
     return flight;
   }
 
-  public static flight getEconomyClass(Seat seat) {
+  public static Flight getEconomyClass(Seat seat) {
     Flight flight = new Flight();
     flight.economyClass = true;
     flight.seat = seat;
@@ -136,7 +136,7 @@ public class Flight {
 * 생성자의 경우 JavaDoc에 명확하게 설명한다.
 * 정적 팩터리 메서드는 자세한 설명이 없다.
 * 이는 네이밍 패턴을 사용하여 보완 할 수 있다.
-* 가장 좋은 보완 방법을 문서화이다.
+* 가장 좋은 보완 방법은 문서화이다.
 
 
  **정적 팩토리에서 사용하는 명명 방식.**
