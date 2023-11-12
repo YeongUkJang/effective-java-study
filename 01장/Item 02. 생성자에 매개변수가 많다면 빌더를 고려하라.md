@@ -144,4 +144,125 @@ public class NutritionFacts {
 ```
 * 그러나 이러한 방법도 불변객체로 만들 수 없다는 장점이 있다. (setter를 사용하기 때문)
 
-3. 빌더 패턴
+3. 빌더
+```java
+public class NutritionFacts {
+  private final int servingSize;
+  private final int servings;
+  private final int calories;
+  private final int fat;
+  private final int sodium;
+  private final int carbohydrate;
+
+  public static class Builder {
+    private final int servingSize;
+    private final int servings;
+
+    private int calories = 0;
+    private int fat = 0;
+    private int sodium = 0;
+    private int carbohydrate = 0;
+  
+    public Builder(int servingSize, int servings) {
+      this.servingSize = servingSize;
+      this.servings = servings;
+    }
+
+    public Builder calories(int val) {calories = val; return this;}
+    public Builder fat(int val) {fat = val; return this;}
+    public Builder sodium(int val) {sodium = val; return this;}
+    public Builder carbohydrate(int val) {carbohydrate = val; return this;}
+  
+    public NutritionFacts build() {
+      return new NutritionFacts(this);
+    }
+  }
+
+  private NutritionFacts(Builder builder) {
+    servingSize = builder.servingSize;
+    servings = builder.servings;
+    calories = builder.calories;
+    fat = builder.fat;
+    sodium = builder.sodium;
+    carbohydrate = builder.carbohydrate;
+  }
+```
+* 빌더는 인스턴스 생성 시 필수 속성을 반드시 설정하도록 강제할 수 있다. (객체를 안전하게 만들 수 있다.)
+* 생성자의 매개변수가 줄고, 옵셔널한 필드는 부가적으로 사용 가능하다.
+* 불변 객체로 만들 수 있다. (모든 필드가 final)
+```java
+public static void main(String[] args) {
+  NutritionFacts coffee = new Builder(100. 4)
+      .calories(30)
+      .carbohydrate(15)
+      .build();
+}
+```
+* 메서드 체이닝 또는 플루언트API를 사용 가능토록 해준다.
+* 그러나 코드가 복잡하고, 중복되는 코드도 발생하니, 필요한 경우(필수적인 필드와 필수적이지 않은 필드가 있고 이것들이 생성자의 매개변수가 많이 늘어난 경우, 그리고 불변으로 만들고 싶은 경우)에 사용을 고려해야 한다.
+* 실무에서는 lombok의 @Builder를 사용하면 쉽게 빌더패턴을 사용할 수 있으나, 필수값을 지정할 수 없다는 단점이 있다.
+
+4. 계층형 빌더
+```java
+public abstract class Pizza {
+  public enum Topping { HAM, MUSHROOM, ONION, PEPPER, SAUSAGE }
+  final Set<Topping> toppings;
+
+  abstract static class Builder<T extends Builder<T>> {          // 재귀적인 타입 빌더
+    EnumSet<Topping> toppings = EnumSet.noneOf(Topping.class);
+    public T addTopping(Topping topping) {
+      toppings.add(Objects.requireNonNull(topping));
+      return self();
+    }
+  
+    abstract Pizza build();
+  
+    Protected abstract T self();
+  }
+
+  Pizza(Builder<?> builder) {
+    toppings = builder.toppings.clone();
+  }
+}
+```
+```java
+public class NyPizza extends Pizza {
+  public enum Size { SMALL, MEDIUM, LARGE }
+  private final Size size;
+
+  public static class Builder extends Pizza.Builder<Builder> {
+    private final Size size;
+
+    public Builder(Size size) {
+      this.size = Objects.requireNonNull(size);
+    }
+
+    @Override
+    public NyPizza build() {
+      return new NyPizza(this);
+    }
+
+    @Override
+    protected Builder self() {
+      return this;
+    }
+  }
+
+  private NyPizza(Builder builder) {
+    super(builder);
+    size = builder.size;
+  }
+}
+```
+```java
+public static void main(String[] args) {
+  NyPizza pizza = new NyPizza.Builder(SMALL)
+          .addTopping(HAM)
+          .addTopping(SAUSAGE)
+          .addTopping(MUSHROOM)
+          .build();
+}
+```
+* 빌더 패턴은 계층적으로 설계된 클래스에서 쓰기에 좋다.
+* 위 예시에서, 추상 클래스에는 추상 빌더를, 구체 클래스에는 구체 빌더를 작성하였고, 하위 클래스의 build 메서드는 구체 하위 클래스를 반환하도록 선언했다. (공변 반환 타이핑)
+* 생성자와 달리 가변 인수 매개변수를 여러 개 사용하는 것이 가능하다. (addTopping())
