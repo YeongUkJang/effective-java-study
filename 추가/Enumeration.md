@@ -32,9 +32,10 @@ class Booking {
 }
 ```  
   
-2. 각각의 Enum 인스턴스들은 JVM 내에 딱 하나만 존재함이 보장 되므로, Java에서 싱글톤을 만드는 가장 좋은 방법으로 권장된다. (관련 내용은 Item.03에서 확인할 수 있다.)
+2. 각각의 Enum 인스턴스들은 JVM 내에 딱 하나만 존재함이 보장 되므로, Java에서 싱글톤을 만드는 가장 좋은 방법으로 권장된다. (관련 내용은 [Item.03](https://github.com/YeongUkJang/effective-java-study/blob/main/01%EC%9E%A5/Item%2003.%20private%20%EC%83%9D%EC%84%B1%EC%9E%90%EB%82%98%20%EC%97%B4%EA%B1%B0%20%ED%83%80%EC%9E%85%EC%9C%BC%EB%A1%9C%20%EC%8B%B1%ED%81%B4%ED%84%B4%EC%9E%84%EC%9D%84%20%EB%B3%B4%EC%A6%9D%ED%95%98%EB%9D%BC.md)에서 확인할 수 있다.)
 
-3. Enum 타입이 가지는 모든 값을 출력하는 방법으로 values()를 사용할 수 있다.
+
+4. Enum 타입이 가지는 모든 값을 출력하는 방법으로 values()를 사용할 수 있다.
 ```java
 public static void main(String[] args) {
   Arrays.stream(BookingStatus.values()).forEach(System.out::println);
@@ -85,7 +86,11 @@ public class EnumEx {
 
 7. EnumMap
 - 열거형 상수를 Key로 사용하는 Map 구현체이며, 상수마다 고유한 value를 매핑하여 사용한다.
-- Enum 은 상수의 선언 순서대로 겹치지 않고 일정한 순번 값을 갖기에 EnumMap은 내부적으로 배열에 값을 저장할 수 있고, 해시충돌(Hash Collision)을 처리할 필요가 없다. 또한, EnumMap은 전달된 Enum 타입의 상수 개수만큼만 저장공간을 확보하면 되므로 리사이징이 필요없어 HashMap보다 빠르다.
+- HashMap보다 빠르다.
+  - Enum은 상수의 선언 순서대로 겹치지 않고 일정한 순번 값을 갖는다.
+  - 따라서 EnumMap은 내부적으로 배열에 값을 저장할 수 있고
+  - 해시충돌(Hash Collision)을 처리할 필요가 없으며
+  - 전달된 Enum타입의 상수 개수만큼만 저장공간을 확보하면 되므로 리사이징이 필요없다.
 ```java
 enum Fruit { GRAPE, BANANA, APPLE, ORANGE, BLUEBERRY }
 
