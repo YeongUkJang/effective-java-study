@@ -58,7 +58,7 @@ enum BookingStatus {
 5. Enum 상수는 인스턴스가 단 하나만 생성(싱글톤)되기 때문에, == 연산자를 통해서 비교하는 것이 가능하다.
 ![](https://github.com/YeongUkJang/effective-java-study/assets/123781240/eb7347dd-4b69-423b-8e51-c003a886a21d)
 - Enum class에 정의된 equals() 를 확인 해 보면 '=='으로 동등비교를 하며, final로 오버라이딩을 막고 있다.
-- '==' 연산자를 통해 동일성 비교시, 'nullpointerexception' 의 발생을 피할 수 있어 사용을 권장한다.
+- '==' 연산자는 'nullpointerexception' 의 발생을 피할 수 있으니 사용을 권장한다.
 
 6. EnumSet
 - 열거형 상수를 사용한 Set 구현체이며, 원소의 중복, null을 허용하지 않는다.
