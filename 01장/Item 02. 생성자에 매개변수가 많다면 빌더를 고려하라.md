@@ -142,7 +142,7 @@ public class NutritionFacts {
   public void setCarbohydrate(int val) { carbohydrate = val; }
 }
 ```
-* 그러나 이러한 방법도 불변객체로 만들 수 없다는 장점이 있다. (setter를 사용하기 때문)
+* 그러나 이러한 방법도 불변객체로 만들 수 없다는 단점이 있다. (setter를 사용하기 때문)
 
 3. 빌더
 ```java
