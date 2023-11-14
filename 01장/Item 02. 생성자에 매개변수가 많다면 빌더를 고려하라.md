@@ -209,9 +209,9 @@ public abstract class Pizza {
   final Set<Topping> toppings;
 
   abstract static class Builder<T extends Builder<T>> {          // 재귀적인 타입 빌더
-    EnumSet<Topping> toppings = EnumSet.noneOf(Topping.class);
-    public T addTopping(Topping topping) {
-      toppings.add(Objects.requireNonNull(topping));
+    EnumSet<Topping> toppings = EnumSet.noneOf(Topping.class);   // EnumSet 안에 원소들을 비우고
+    public T addTopping(Topping topping) {                       // addTopping()으로 추가할 수 있게 함
+      toppings.add(Objects.requireNonNull(topping));             // requireNonNull() - Null 체크를 위한 메서드(입력값이 없으면 NPE 발생)
       return self();
     }
   
@@ -233,7 +233,7 @@ public class NyPizza extends Pizza {
   public static class Builder extends Pizza.Builder<Builder> {
     private final Size size;
 
-    public Builder(Size size) {
+    public Builder(Size size) {                                    // 필수값으로 size를 받아오게 함
       this.size = Objects.requireNonNull(size);
     }
 
