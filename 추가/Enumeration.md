@@ -74,32 +74,16 @@ public class EnumEx {
   static EnumSet<Fruit> fruit4 = EnumSet.range(Fruit.BANANA, Fruit.ORANGE);  // 매개변수의 범위에 있는 요소를 반환
   static EnumSet<Fruit> fruit5 = EnumSet.noneOf(Fruit.class);                // 매개변수로 받는 열거형을 비운 후 반환
 
-  public static void main(String[] args) {
-    fruit1.forEach(System.out::println);    // GRAPE, BANANA, APPLE, ORANGE, BLUEBERRY
-    fruit2.forEach(System.out::println);    // GRAPE, APPLE
-    fruit3.forEach(System.out::println);    // BANANA, ORANGE, BLUEBERRY
-    fruit4.forEach(System.out::println);    // BANANA, APPLE, ORANGE
-    fruit5.forEach(System.out::println);    // 
-  }
-}
-```
-
-7. EnumMap
-- 열거형 상수를 Key로 사용하는 Map 구현체이며, 상수마다 고유한 value를 매핑하여 사용한다.
-- HashMap보다 빠르다.
-  - Enum은 상수의 선언 순서대로 겹치지 않고 일정한 순번 값을 갖는다.
-  - 따라서 EnumMap은 내부적으로 배열에 값을 저장할 수 있고
-  - 해시충돌(Hash Collision)을 처리할 필요가 없으며
-  - 전달된 Enum타입의 상수 개수만큼만 저장공간을 확보하면 되므로 리사이징이 필요없다.
+  public static void main(String[] ar이다.
 ```java
 enum Fruit { GRAPE, BANANA, APPLE, ORANGE, BLUEBERRY }
 
 public class EnumMapEx {
     static EnumMap<Fruit, Integer> sugarContent = new EnumMap<>(Fruit.class){
         {
-            put(APPLE, 60);
+            put(GRAPE, 60);
             put(BANANA, 40);
-            put(MELON, 80);
+            put(APPLE, 80);
             put(ORANGE, 70);
             put(BLUEBERRY, 30);
         }
