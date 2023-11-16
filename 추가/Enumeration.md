@@ -32,7 +32,7 @@ class Booking {
 }
 ```  
   
-2. 각각의 Enum 인스턴스들은 JVM 내에 딱 하나만 존재함이 보장 되므로, Java에서 싱글톤을 만드는 가장 좋은 방법으로 권장된다. (관련 내용은 [Item.03](https://github.com/YeongUkJang/effective-java-study/blob/main/01%EC%9E%A5/Item%2003.%20private%20%EC%83%9D%EC%84%B1%EC%9E%90%EB%82%98%20%EC%97%B4%EA%B1%B0%20%ED%83%80%EC%9E%85%EC%9C%BC%EB%A1%9C%20%EC%8B%B1%ED%81%B4%ED%84%B4%EC%9E%84%EC%9D%84%20%EB%B3%B4%EC%A6%9D%ED%95%98%EB%9D%BC.md)에서 확인할 수 있다.)
+2. 각각의 Enum 인스턴스들은 JVM 내에 딱 하나만 존재함이 보장 되므로, Java에서 싱글톤을 만드는 가장 좋은 방법으로 권장된다. (관련 내용은 [Singleton Pattern](https://github.com/YeongUkJang/effective-java-study/blob/main/%EC%B6%94%EA%B0%80/Design%20Patterns/01.%20Singleton%20Pattern.md)에서 확인할 수 있다.)
 
 
 4. Enum 타입이 가지는 모든 값을 출력하는 방법으로 values()를 사용할 수 있다.
