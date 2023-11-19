@@ -280,3 +280,11 @@ public class MetaKanye<T> {
   - 생성된 인스턴스는 동일하나, 원하는 제네릭 타입으로 형변환이 가능하다.
   - '==' 비교시 동일 객체임에도, 제네릭 타입이 달라 에러가 발생한다.
 - 장점3: 정적 팩터리의 메서드 참조를 공급자(Supplier)로 사용할 수 있다.
+```java
+public class Concert {
+  public void start(Supplier<Singer> singerSupplier) {
+    Singer singer = singerSupplier.get();
+    singer.sing();
+  }
+}
+```
