@@ -65,7 +65,7 @@ public static void main(String[] args) {
 2. 캐시
 - 객체 참조를 캐시에 넣고, 사용이 끝난 이후에도 참조를 해제하지 않은 경우.
 - 해결방법
-    - WeakHashMap [참고]([https://github.com/YeongUkJang/effective-java-study/blob/main/%EC%B6%94%EA%B0%80/Design%20Patterns/01.%20Singleton%20Pattern.md](https://github.com/YeongUkJang/effective-java-study/blob/main/%EC%B6%94%EA%B0%80/WeakHashMap.md))
+    -  [WeakHashMap](https://github.com/YeongUkJang/effective-java-study/blob/main/%EC%B6%94%EA%B0%80/WeakHashMap.md)
     - ScheduledThreadPoolExecutor같은 백그라운드 스레드를 활용하거나 캐시에 새 앤트리를 추가할 때 부수 작업으로 수행하여 메모리 청소한다.
     - LinkedHashMap은 removeEldestEntry 메소드를 사용하여 앤트리 추가 시 부수작업으로 수행
     - 복잡한 캐시를 생성할 땐 java.lang.ref 패키지를 직접 활용해야함. 
