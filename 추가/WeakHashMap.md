@@ -48,7 +48,7 @@
   ```
 
 - Phantom Reference
-  ```
+  ```java
   public class PhantomReferenceEx {
     public static void main(String[] args) throws InterruptedException {
         Object strong = new Object();
