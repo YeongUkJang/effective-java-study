@@ -66,18 +66,16 @@ enum BookingStatus {
 - EnumSet은 내부적으로 비트 벡터로 구현되어 있어 적은 메모리를 사용하기 때문에 매우 효율적이다.
 ```java
 enum Fruit { GRAPE, BANANA, APPLE, ORANGE, BLUEBERRY }
-
-public class EnumEx {
+```
+```java
+public class EnumSetEx {
   static EnumSet<Fruit> fruit1 = EnumSet.allOf(Fruit.class);                 // 매개변수로 받는 열거형의 모든 요소를 반환
   static EnumSet<Fruit> fruit2 = EnumSet.of(Fruit.GRAPE, Fruit.APPLE);       // 매개변수로 받는 요소를 반환
   static EnumSet<Fruit> fruit3 = EnumSet.complementOf(fruit2);               // 매개변수로 받는 요소를 제외하고 반환
   static EnumSet<Fruit> fruit4 = EnumSet.range(Fruit.BANANA, Fruit.ORANGE);  // 매개변수의 범위에 있는 요소를 반환
   static EnumSet<Fruit> fruit5 = EnumSet.noneOf(Fruit.class);                // 매개변수로 받는 열거형을 비운 후 반환
-
-  public static void main(String[] ar이다.
+```
 ```java
-enum Fruit { GRAPE, BANANA, APPLE, ORANGE, BLUEBERRY }
-
 public class EnumMapEx {
     static EnumMap<Fruit, Integer> sugarContent = new EnumMap<>(Fruit.class){
         {
