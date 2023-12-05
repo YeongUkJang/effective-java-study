@@ -56,3 +56,20 @@ public static void main(String[] args) {
 
 - 해결 방안으로, 해당 참조를 다 쓰면 null을 할당해 참조 해제하는 방법이 있다.
 - null 처리된 참조를 사용하려하면 NPE를 발생시켜 오류를 빨리 확인 할 수 있는 장점도 있다.
+
+### 메모리 누수 주의 사항
+1. 자기 메모리를 직접 관리하는 클래스
+- 일반적으로 자기 메모리를 직접 관리하는 클래스라면 항시 메모리 누수에 주의해야 한다.
+- 원소를 다 사용한 즉시 그 원소가 참조한 객체들을 다 null 처리해줘야 한다.
+
+2. 캐시
+- 객체 참조를 캐시에 넣고, 사용이 끝난 이후에도 참조를 해제하지 않은 경우.
+- 해결방법
+    - WeakHashMap [참고]([https://github.com/YeongUkJang/effective-java-study/blob/main/%EC%B6%94%EA%B0%80/Design%20Patterns/01.%20Singleton%20Pattern.md](https://github.com/YeongUkJang/effective-java-study/blob/main/%EC%B6%94%EA%B0%80/WeakHashMap.md))
+    - ScheduledThreadPoolExecutor같은 백그라운드 스레드를 활용하거나 캐시에 새 앤트리를 추가할 때 부수 작업으로 수행하여 메모리 청소한다.
+    - LinkedHashMap은 removeEldestEntry 메소드를 사용하여 앤트리 추가 시 부수작업으로 수행
+    - 복잡한 캐시를 생성할 땐 java.lang.ref 패키지를 직접 활용해야함. 
+
+3. 리스너(Listener) 혹은 콜백(Callback)
+- 클라이언트가 콜백을 등록만하고 해지하지 않는 경우 메모리에 콜백이 계속 쌓인다.
+- WeakHashMap으로 해결
