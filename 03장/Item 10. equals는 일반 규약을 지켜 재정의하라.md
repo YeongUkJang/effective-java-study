@@ -170,33 +170,33 @@
         }
       }
       ```
-      - 상속을 하는 우회 방법으로 대신 컴포지션을 이용해 필드를 추가하는 방법이 있다.
-        ```java
-        public class ColorPoint {
-          private final Point point;
-          private final Color color;
+    - 상속을 하는 우회 방법으로 대신 컴포지션을 이용해 필드를 추가하는 방법이 있다.
+      ```java
+      public class ColorPoint {
+        private final Point point;
+        private final Color color;
       
-          public ColorPoint(int x, int y, Color color) {
-              point = new Point(x, y);
-              this.color = Objects.requireNonNull(color);
-          }
-      
-          @Override
-          public boolean equals(Object o) {
-              if (!(o instanceof ColorPoint))
-                  return false;
-              ColorPoint cp = (ColorPoint) o;
-              return cp.point.equals(point) && cp.color.equals(color);
-          }
-      
-          @Override
-          public int hashCode() {
-              return point.hashCode() + color.hashCode();
-          }
+        public ColorPoint(int x, int y, Color color) {
+            point = new Point(x, y);
+            this.color = Objects.requireNonNull(color);
         }
-        ```
-        - 컴포지션(구성): 한 클래스가 다른 클래스를 인스턴스 변수로 가지고 있는 형태
-        - equals는 자기 자신의 타입을 확인하고, 각 필드의 equals를 검사하고 있다.
+      
+        @Override
+        public boolean equals(Object o) {
+            if (!(o instanceof ColorPoint))
+                return false;
+            ColorPoint cp = (ColorPoint) o;
+            return cp.point.equals(point) && cp.color.equals(color);
+        }
+      
+        @Override
+        public int hashCode() {
+            return point.hashCode() + color.hashCode();
+        }
+      }
+      ```
+    - 컴포지션(구성): 한 클래스가 다른 클래스를 인스턴스 변수로 가지고 있는 형태
+    - equals는 자기 자신의 타입을 확인하고, 각 필드의 equals를 검사하고 있다.
 
     <br>
   2. 상속 시 필드를 추가하지 않은 경우
