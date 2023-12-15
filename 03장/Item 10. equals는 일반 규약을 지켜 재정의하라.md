@@ -118,7 +118,7 @@
           System.out.println(cp.equals(p));   // false
       }
       ```
-    - Point 입장에서는 ColorPoint가 color 타입이고 ColorPoint의 x, y만 비교하므로 true를 반환한다.
+    - Point 입장에서는 ColorPoint가 Point 타입이고 ColorPoint의 x, y만 비교하므로 true를 반환한다.
     - ColorPoint 입장에서는 Point가 ColorPoint타입이 아니므로 false를 반환한다.
   
       ```java
