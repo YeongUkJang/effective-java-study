@@ -12,7 +12,7 @@
   - 인터페이스와 추상 클래스의 장점을 모두 취할 수 있다.
     - 인터페이스: 디폴트 메서드 구현
     - 추상 골격 메서드: 나머지 메서드 구현
-    - 템플릿 메서드 패턴
+    - [템플릿 메서드 패턴](https://github.com/YeongUkJang/effective-java-study/blob/main/%EC%B6%94%EA%B0%80/Design%20Patterns/03.%20Template%20method%20Pattern.md)
   - 다중 상속을 시뮬레이트 할 수 있다.
   - 골격 구현은 상속용 클래스이기 때문에 Item.19 의 내용을 따라야 한다.
     ```java
